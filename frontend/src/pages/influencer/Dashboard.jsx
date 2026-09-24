@@ -7,7 +7,7 @@ import StatsCard from '../../components/StatsCard';
 import toast from 'react-hot-toast';
 import {
   Copy, Check, LogOut, ShoppingBag, DollarSign, Clock, TrendingUp,
-  Search, Filter, Rocket
+  Search, Filter
 } from 'lucide-react';
 
 const STATUS_TABS = [
@@ -85,9 +85,9 @@ function InfluencerDashboard() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-50">
+      <div className="min-h-screen flex items-center justify-center bg-white">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto mb-4" />
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#422c26] mx-auto mb-4" />
           <p className="text-slate-500">جار تحميل داشبوردك...</p>
         </div>
       </div>
@@ -98,23 +98,15 @@ function InfluencerDashboard() {
   const influencerName = stats?.user?.name || user?.name;
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-white">
       {/* ── Header ── */}
-      <header className="bg-gradient-to-l from-indigo-700 to-purple-700 text-white">
+      <header className="bg-[#717854] text-[#d1bea1]">
         <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
-              <Rocket className="w-5 h-5 text-white" />
-            </div>
-            <div>
-              <p className="font-bold text-sm">نظام الإنفلونسرز</p>
-              <p className="text-indigo-200 text-xs">داشبورد الإنفلونسر</p>
-            </div>
-          </div>
+          <img src="/logo.png" alt="Luna Healthy" className="h-20 w-28 object-contain" />
           <div className="flex items-center gap-3">
             <div className="text-left hidden sm:block">
               <p className="text-white font-semibold text-sm">{influencerName}</p>
-              <p className="text-indigo-200 text-xs">{user?.email}</p>
+              <p className="text-[#d1bea1]/75 text-xs">{user?.email}</p>
             </div>
             <button
               onClick={handleLogout}
@@ -129,15 +121,15 @@ function InfluencerDashboard() {
         {/* Welcome + Promo Code */}
         <div className="max-w-5xl mx-auto px-6 pb-8 pt-2">
           <h1 className="text-2xl font-bold mb-1">أهلاً، {influencerName}! 👋</h1>
-          <p className="text-indigo-200 text-sm mb-6">إليك نظرة على أداء برومو كودك</p>
+          <p className="text-[#d1bea1]/80 text-sm mb-6">إليك نظرة على أداء برومو كودك</p>
 
           {/* Promo Code Card */}
           {promoCode && (
             <div className="bg-white/15 backdrop-blur-sm rounded-2xl p-4 flex items-center justify-between border border-white/20 max-w-md">
               <div>
-                <p className="text-indigo-200 text-xs font-medium mb-1">برومو كودك الخاص</p>
+                <p className="text-[#d1bea1]/80 text-xs font-medium mb-1">برومو كودك الخاص</p>
                 <p className="text-3xl font-black tracking-widest font-mono text-white">{promoCode}</p>
-                <p className="text-indigo-200 text-xs mt-1">
+                <p className="text-[#d1bea1]/80 text-xs mt-1">
                   خصم {stats?.user?.discount_rate}% للعميل • كوميشن {stats?.user?.commission_rate}% ليك
                 </p>
               </div>
@@ -146,7 +138,7 @@ function InfluencerDashboard() {
                 className="flex flex-col items-center gap-1 p-3 bg-white/20 hover:bg-white/30 rounded-xl transition"
                 title="انسخ الكود"
               >
-                {copied ? <Check className="w-5 h-5 text-green-300" /> : <Copy className="w-5 h-5 text-white" />}
+                {copied ? <Check className="w-5 h-5 text-[#d1bea1]" /> : <Copy className="w-5 h-5 text-white" />}
                 <span className="text-xs text-white/80">{copied ? 'تم!' : 'انسخ'}</span>
               </button>
             </div>
@@ -192,7 +184,7 @@ function InfluencerDashboard() {
               <div className="relative">
                 <Search className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
                 <input
-                  className="pr-9 pl-4 py-2 rounded-xl border border-slate-200 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 outline-none text-sm w-48"
+                  className="pr-9 pl-4 py-2 rounded-xl border border-slate-200 focus:border-[#717854] focus:ring-2 focus:ring-[#ede4d7] outline-none text-sm w-48"
                   placeholder="بحث..."
                   value={search}
                   onChange={e => setSearch(e.target.value)}
@@ -208,8 +200,8 @@ function InfluencerDashboard() {
                   onClick={() => setStatusFilter(tab.value)}
                   className={`px-3 py-1.5 rounded-xl text-xs font-semibold border transition ${
                     statusFilter === tab.value
-                      ? 'bg-indigo-600 text-white border-indigo-600'
-                      : 'bg-white text-slate-500 border-slate-200 hover:border-indigo-300'
+                      ? 'bg-[#422c26] text-white border-[#422c26]'
+                      : 'bg-white text-slate-500 border-slate-200 hover:border-[#d1bea1]'
                   }`}
                 >
                   {tab.label}
@@ -250,12 +242,12 @@ function InfluencerDashboard() {
                           <p className="text-xs text-slate-400 font-mono">{order.customer_phone}</p>
                         )}
                       </td>
-                      <td className="px-4 py-3 font-semibold text-green-700">
+                      <td className="px-4 py-3 font-semibold text-[#5d6446]">
                         {Number(order.order_value).toLocaleString('ar-EG')} ج
                       </td>
                       <td className="px-4 py-3">
                         {order.commission_amount > 0 ? (
-                          <span className={`font-bold ${order.status === 'cancelled' ? 'text-slate-300 line-through' : 'text-amber-600'}`}>
+                          <span className={`font-bold ${order.status === 'cancelled' ? 'text-slate-300 line-through' : 'text-[#684b3f]'}`}>
                             {Number(order.commission_amount).toLocaleString('ar-EG')} ج
                           </span>
                         ) : <span className="text-slate-300">—</span>}

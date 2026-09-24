@@ -122,11 +122,14 @@ function AddOrder() {
 
     setSaving(true);
     try {
-      await api.post('/orders', {
+      const { data } = await api.post('/orders', {
         ...form,
         products: orderProducts.map(({ product_id, quantity }) => ({ product_id, quantity })),
       });
       toast.success('تم إضافة الأوردر بنجاح 🎉');
+      if (!data.google_form_synced) {
+        toast.error('تم حفظ الأوردر، لكن تعذر إرساله إلى Google Form');
+      }
       navigate('/admin/orders');
     } catch (error) {
       toast.error(error.response?.data?.error || 'حدث خطأ أثناء إضافة الأوردر');
@@ -176,7 +179,7 @@ function AddOrder() {
               <h2 className="font-bold text-slate-700 text-sm">منتجات الأوردر</h2>
               <p className="text-xs text-slate-400 mt-1">السعر يُحسب تلقائيًا من المنتجات والكميات</p>
             </div>
-            <PackagePlus className="w-6 h-6 text-indigo-500" />
+            <PackagePlus className="w-6 h-6 text-[#717854]" />
           </div>
 
           <div className="flex flex-col sm:flex-row gap-2">
@@ -193,7 +196,7 @@ function AddOrder() {
                 </option>
               ))}
             </select>
-            <button type="button" onClick={addProduct} disabled={!selectedProductId} className="px-5 py-2.5 bg-indigo-600 text-white rounded-xl font-semibold disabled:opacity-40 flex items-center justify-center gap-2">
+            <button type="button" onClick={addProduct} disabled={!selectedProductId} className="px-5 py-2.5 bg-[#422c26] hover:bg-[#35221e] text-white rounded-xl font-semibold disabled:opacity-40 flex items-center justify-center gap-2">
               <Plus className="w-4 h-4" /> إضافة
             </button>
           </div>
@@ -220,7 +223,7 @@ function AddOrder() {
                       value={item.quantity}
                       onChange={(event) => updateProductQuantity(item.product_id, event.target.value)}
                     />
-                    <span className="text-sm font-bold text-green-700 min-w-24">{formatMoney(item.price * item.quantity)} ج</span>
+                    <span className="text-sm font-bold text-[#5d6446] min-w-24">{formatMoney(item.price * item.quantity)} ج</span>
                     <button type="button" onClick={() => removeProduct(item.product_id)} className="p-2 text-red-400 hover:text-red-600 hover:bg-red-50 rounded-lg">
                       <Trash2 className="w-4 h-4" />
                     </button>
@@ -235,7 +238,7 @@ function AddOrder() {
           <label className="label">البرومو كود <span className="text-slate-400">(اختياري)</span></label>
           <div className="flex gap-2">
             <input
-              className={`input flex-1 font-mono uppercase ${promoStatus?.valid ? 'border-green-400 bg-green-50' : promoStatus?.valid === false ? 'border-red-400 bg-red-50' : ''}`}
+              className={`input flex-1 font-mono uppercase ${promoStatus?.valid ? 'border-[#8c9e73] bg-[#f4f6f0]' : promoStatus?.valid === false ? 'border-red-400 bg-red-50' : ''}`}
               dir="ltr"
               placeholder="AHMED10"
               value={form.promo_code}
@@ -244,13 +247,13 @@ function AddOrder() {
                 setPromoStatus(null);
               }}
             />
-            <button type="button" onClick={checkPromo} disabled={!form.promo_code || checkingPromo} className="px-4 py-2.5 bg-slate-700 text-white rounded-xl font-semibold text-sm disabled:opacity-40 flex items-center gap-2">
+            <button type="button" onClick={checkPromo} disabled={!form.promo_code || checkingPromo} className="px-4 py-2.5 bg-[#422c26] hover:bg-[#35221e] text-white rounded-xl font-semibold text-sm disabled:opacity-40 flex items-center gap-2">
               {checkingPromo ? <span className="animate-spin rounded-full h-4 w-4 border-b-2 border-white" /> : <Search className="w-4 h-4" />}
               تحقق
             </button>
           </div>
           {promoStatus?.valid && (
-            <div className="mt-2 flex items-center gap-2 text-green-700 bg-green-50 rounded-xl px-3 py-2 text-sm">
+            <div className="mt-2 flex items-center gap-2 text-[#4a5039] bg-[#f4f6f0] rounded-xl px-3 py-2 text-sm">
               <CheckCircle className="w-4 h-4" />
               كود صحيح: {promoStatus.influencer.name} — خصم {discountRate}% · عمولة {commissionRate}%
             </div>
@@ -263,16 +266,16 @@ function AddOrder() {
         </section>
 
         {orderValue > 0 && (
-          <section className="bg-gradient-to-l from-indigo-50 to-purple-50 rounded-2xl p-5 border border-indigo-100 space-y-2">
-            <h2 className="font-bold text-indigo-800 text-sm mb-3">ملخص الأوردر</h2>
+          <section className="bg-gradient-to-l from-[#f7f3ed] to-[#f4f4ef] rounded-2xl p-5 border border-[#ede4d7] space-y-2">
+            <h2 className="font-bold text-[#422c26] text-sm mb-3">ملخص الأوردر</h2>
             <div className="flex justify-between text-sm"><span>إجمالي المنتجات</span><strong>{formatMoney(orderValue)} جنيه</strong></div>
             {discountAmount > 0 && <div className="flex justify-between text-sm text-red-500"><span>الخصم ({discountRate}%)</span><strong>- {formatMoney(discountAmount)} جنيه</strong></div>}
-            <div className="border-t border-indigo-200 pt-2 flex justify-between"><strong>الإجمالي بعد الخصم</strong><strong className="text-green-700 text-lg">{formatMoney(finalValue)} جنيه</strong></div>
-            {commissionAmount > 0 && <div className="flex justify-between text-sm text-amber-700 bg-amber-50 rounded-xl px-3 py-2"><span>عمولة الإنفلونسر ({commissionRate}%)</span><strong>{formatMoney(commissionAmount)} جنيه</strong></div>}
+            <div className="border-t border-[#d1bea1] pt-2 flex justify-between"><strong>الإجمالي بعد الخصم</strong><strong className="text-[#5d6446] text-lg">{formatMoney(finalValue)} جنيه</strong></div>
+            {commissionAmount > 0 && <div className="flex justify-between text-sm text-[#684b3f] bg-[#faf7f1] rounded-xl px-3 py-2"><span>عمولة الإنفلونسر ({commissionRate}%)</span><strong>{formatMoney(commissionAmount)} جنيه</strong></div>}
           </section>
         )}
 
-        <button type="submit" disabled={saving} className="w-full py-3.5 bg-gradient-to-l from-indigo-600 to-purple-600 text-white font-bold rounded-xl shadow-lg hover:opacity-90 disabled:opacity-60 flex items-center justify-center gap-2">
+        <button type="submit" disabled={saving} className="w-full py-3.5 bg-[#422c26] hover:bg-[#35221e] text-[#d1bea1] font-bold rounded-xl shadow-lg disabled:opacity-60 flex items-center justify-center gap-2">
           {saving ? <span className="animate-spin rounded-full h-5 w-5 border-b-2 border-white" /> : <><PlusCircle className="w-5 h-5" /> إضافة الأوردر</>}
         </button>
       </form>
@@ -280,7 +283,7 @@ function AddOrder() {
       <style>{`
         .label { display: block; font-size: 0.75rem; font-weight: 600; color: #475569; margin-bottom: 0.35rem; }
         .input { width: 100%; padding: 0.65rem 0.9rem; border-radius: 0.75rem; border: 1px solid #e2e8f0; outline: none; font-size: 0.875rem; color: #1e293b; transition: all 0.15s; font-family: 'Cairo', sans-serif; background-color: white; }
-        .input:focus { border-color: #6366f1; box-shadow: 0 0 0 3px rgba(99,102,241,0.1); }
+        .input:focus { border-color: #717854; box-shadow: 0 0 0 3px rgba(113,120,84,0.14); }
       `}</style>
     </div>
   );

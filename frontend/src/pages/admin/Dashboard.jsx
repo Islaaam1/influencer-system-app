@@ -22,7 +22,7 @@ function AdminDashboard() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-indigo-600" />
+        <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-[#422c26]" />
       </div>
     );
   }
@@ -37,7 +37,7 @@ function AdminDashboard() {
         </div>
         <Link
           to="/admin/add-order"
-          className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-xl font-semibold text-sm hover:bg-indigo-700 transition shadow-sm"
+          className="flex items-center gap-2 px-4 py-2 bg-[#422c26] text-white rounded-xl font-semibold text-sm hover:bg-[#35221e] transition shadow-sm"
         >
           <PlusCircle className="w-4 h-4" />
           أضف أوردر
@@ -79,12 +79,12 @@ function AdminDashboard() {
         {/* Top Influencer */}
         <div className="bg-white rounded-2xl p-5 shadow-sm border border-slate-100">
           <div className="flex items-center gap-2 mb-4">
-            <Trophy className="w-5 h-5 text-amber-500" />
+            <Trophy className="w-5 h-5 text-[#717854]" />
             <h2 className="font-bold text-slate-800">أفضل إنفلونسر</h2>
           </div>
           {stats?.topInfluencer ? (
             <div className="text-center py-4">
-              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center mx-auto mb-3 shadow-md">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#717854] to-[#422c26] flex items-center justify-center mx-auto mb-3 shadow-md">
                 <span className="text-white font-bold text-xl">
                   {stats.topInfluencer.name?.charAt(0)}
                 </span>
@@ -114,7 +114,7 @@ function AdminDashboard() {
         <div className="xl:col-span-2 bg-white rounded-2xl p-5 shadow-sm border border-slate-100">
           <div className="flex items-center justify-between mb-4">
             <h2 className="font-bold text-slate-800">آخر الأوردرات</h2>
-            <Link to="/admin/orders" className="text-indigo-600 text-sm font-semibold hover:underline">
+            <Link to="/admin/orders" className="text-[#422c26] text-sm font-semibold hover:underline">
               عرض الكل
             </Link>
           </div>
@@ -136,12 +136,12 @@ function AdminDashboard() {
                       <td className="py-3 text-slate-500">
                         {order.influencer_name ? (
                           <span className="inline-flex items-center gap-1">
-                            <span className="bg-indigo-100 text-indigo-700 text-xs px-1.5 py-0.5 rounded font-mono">{order.promo_code}</span>
+                            <span className="bg-[#ede4d7] text-[#422c26] text-xs px-1.5 py-0.5 rounded font-mono">{order.promo_code}</span>
                             <span className="text-xs">{order.influencer_name}</span>
                           </span>
                         ) : <span className="text-slate-300 text-xs">بدون كود</span>}
                       </td>
-                      <td className="py-3 font-semibold text-green-700">{fmt(order.order_value)} ج</td>
+                      <td className="py-3 font-semibold text-[#5d6446]">{fmt(order.order_value)} ج</td>
                       <td className="py-3"><StatusBadge status={order.status} /></td>
                     </tr>
                   ))}
@@ -152,7 +152,7 @@ function AdminDashboard() {
             <div className="text-center py-10 text-slate-400">
               <ShoppingBag className="w-12 h-12 mx-auto mb-2 opacity-30" />
               <p className="text-sm">لا توجد أوردرات بعد</p>
-              <Link to="/admin/add-order" className="text-indigo-600 text-sm font-semibold hover:underline mt-1 inline-block">
+              <Link to="/admin/add-order" className="text-[#422c26] text-sm font-semibold hover:underline mt-1 inline-block">
                 أضف أول أوردر
               </Link>
             </div>

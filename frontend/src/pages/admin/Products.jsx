@@ -119,7 +119,7 @@ function Products() {
             <input className="product-input" type="number" min="0" step="1" value={form.quantity} onChange={(event) => setForm({ ...form, quantity: event.target.value })} required />
           </div>
         </div>
-        <button type="submit" disabled={saving} className="mt-4 px-5 py-2.5 bg-indigo-600 text-white rounded-xl font-semibold flex items-center gap-2 disabled:opacity-50">
+        <button type="submit" disabled={saving} className="mt-4 px-5 py-2.5 bg-[#422c26] hover:bg-[#35221e] text-white rounded-xl font-semibold flex items-center gap-2 disabled:opacity-50">
           <Plus className="w-4 h-4" /> {saving ? 'جاري الحفظ...' : editingId ? 'حفظ التعديلات' : 'إضافة المنتج'}
         </button>
       </form>
@@ -156,12 +156,12 @@ function Products() {
                 {filteredProducts.map((product) => (
                   <tr key={product.id} className="hover:bg-slate-50/60">
                     <td className="px-5 py-4 font-semibold text-slate-800">{product.name}</td>
-                    <td className="px-5 py-4"><span className="font-mono bg-indigo-50 text-indigo-700 px-2 py-1 rounded-lg">{product.code}</span></td>
-                    <td className="px-5 py-4 font-semibold text-green-700">{formatMoney(product.price)} جنيه</td>
-                    <td className="px-5 py-4"><span className={`font-bold ${product.quantity === 0 ? 'text-red-500' : product.quantity <= 5 ? 'text-amber-500' : 'text-slate-700'}`}>{product.quantity}</span></td>
+                    <td className="px-5 py-4"><span className="font-mono bg-[#f7f3ed] text-[#422c26] px-2 py-1 rounded-lg">{product.code}</span></td>
+                    <td className="px-5 py-4 font-semibold text-[#5d6446]">{formatMoney(product.price)} جنيه</td>
+                    <td className="px-5 py-4"><span className={`font-bold ${product.quantity === 0 ? 'text-red-500' : product.quantity <= 5 ? 'text-[#684b3f]' : 'text-slate-700'}`}>{product.quantity}</span></td>
                     <td className="px-5 py-4">
                       <div className="flex gap-1">
-                        <button onClick={() => startEdit(product)} className="p-2 text-indigo-500 hover:bg-indigo-50 rounded-lg"><Edit3 className="w-4 h-4" /></button>
+                        <button onClick={() => startEdit(product)} className="p-2 text-[#422c26] hover:bg-[#f7f3ed] rounded-lg"><Edit3 className="w-4 h-4" /></button>
                         <button onClick={() => handleDelete(product)} className="p-2 text-red-400 hover:bg-red-50 rounded-lg"><Trash2 className="w-4 h-4" /></button>
                       </div>
                     </td>
@@ -176,7 +176,7 @@ function Products() {
       <style>{`
         .product-label { display: block; font-size: 0.75rem; font-weight: 600; color: #475569; margin-bottom: 0.35rem; }
         .product-input { width: 100%; padding: 0.65rem 0.9rem; border-radius: 0.75rem; border: 1px solid #e2e8f0; outline: none; font-size: 0.875rem; color: #1e293b; background: white; }
-        .product-input:focus { border-color: #6366f1; box-shadow: 0 0 0 3px rgba(99,102,241,0.1); }
+        .product-input:focus { border-color: #717854; box-shadow: 0 0 0 3px rgba(113,120,84,0.14); }
       `}</style>
     </div>
   );

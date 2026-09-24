@@ -99,7 +99,7 @@ function Influencers() {
           <h1 className="text-2xl font-bold text-slate-800">الإنفلونسرز</h1>
           <p className="text-slate-500 text-sm mt-0.5">{influencers.length} إنفلونسر مسجل</p>
         </div>
-        <button onClick={openAdd} className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-xl font-semibold text-sm hover:bg-indigo-700 transition shadow-sm">
+        <button onClick={openAdd} className="flex items-center gap-2 px-4 py-2 bg-[#422c26] text-white rounded-xl font-semibold text-sm hover:bg-[#35221e] transition shadow-sm">
           <UserPlus className="w-4 h-4" />
           إضافة إنفلونسر
         </button>
@@ -109,13 +109,13 @@ function Influencers() {
       <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
         {loading ? (
           <div className="flex items-center justify-center h-40">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600" />
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#422c26]" />
           </div>
         ) : influencers.length === 0 ? (
           <div className="text-center py-16 text-slate-400">
             <UserPlus className="w-12 h-12 mx-auto mb-2 opacity-30" />
             <p>لا يوجد إنفلونسرز بعد</p>
-            <button onClick={openAdd} className="text-indigo-600 font-semibold text-sm mt-1 hover:underline">أضف أول إنفلونسر</button>
+            <button onClick={openAdd} className="text-[#422c26] font-semibold text-sm mt-1 hover:underline">أضف أول إنفلونسر</button>
           </div>
         ) : (
           <div className="overflow-x-auto">
@@ -138,7 +138,7 @@ function Influencers() {
                     <tr key={inf.id} className="hover:bg-slate-50/50 transition-colors">
                       <td className="px-4 py-3">
                         <div className="flex items-center gap-3">
-                          <div className="w-9 h-9 rounded-full bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
+                          <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#717854] to-[#422c26] flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
                             {inf.name.charAt(0)}
                           </div>
                           <div>
@@ -148,15 +148,15 @@ function Influencers() {
                         </div>
                       </td>
                       <td className="px-4 py-3">
-                        <span className="font-mono text-sm font-bold bg-indigo-50 text-indigo-700 px-2 py-1 rounded-lg">
+                        <span className="font-mono text-sm font-bold bg-[#f7f3ed] text-[#422c26] px-2 py-1 rounded-lg">
                           {inf.promo_code}
                         </span>
                         <div className="text-xs text-slate-400 mt-0.5">خصم {inf.discount_rate}% • كوميشن {inf.commission_rate}%</div>
                       </td>
                       <td className="px-4 py-3 font-semibold text-slate-700">{inf.total_orders}</td>
-                      <td className="px-4 py-3 font-semibold text-green-700">{fmt(inf.total_sales)} ج</td>
+                      <td className="px-4 py-3 font-semibold text-[#5d6446]">{fmt(inf.total_sales)} ج</td>
                       <td className="px-4 py-3">
-                        <span className={`font-semibold ${pending > 0 ? 'text-amber-600' : 'text-slate-400'}`}>
+                        <span className={`font-semibold ${pending > 0 ? 'text-[#684b3f]' : 'text-slate-400'}`}>
                           {fmt(pending)} ج
                         </span>
                       </td>
@@ -165,7 +165,7 @@ function Influencers() {
                           onClick={() => handleToggleActive(inf)}
                           className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold border transition ${
                             inf.is_active
-                              ? 'bg-green-100 text-green-700 border-green-200 hover:bg-green-200'
+                              ? 'bg-[#e5e9da] text-[#4a5039] border-[#cdd5ba] hover:bg-[#cdd5ba]'
                               : 'bg-red-100 text-red-600 border-red-200 hover:bg-red-200'
                           }`}
                         >
@@ -178,12 +178,12 @@ function Influencers() {
                             <button
                               onClick={() => { setPayModal({ id: inf.id, name: inf.name, pending }); setPayAmount(''); setPayNotes(''); }}
                               title="تسجيل دفع كوميشن"
-                              className="p-1.5 rounded-lg text-green-600 hover:bg-green-50 transition"
+                              className="p-1.5 rounded-lg text-[#5d6446] hover:bg-[#f4f6f0] transition"
                             >
                               <DollarSign className="w-4 h-4" />
                             </button>
                           )}
-                          <button onClick={() => openEdit(inf)} title="تعديل" className="p-1.5 rounded-lg text-indigo-600 hover:bg-indigo-50 transition">
+                          <button onClick={() => openEdit(inf)} title="تعديل" className="p-1.5 rounded-lg text-[#422c26] hover:bg-[#f7f3ed] transition">
                             <Pencil className="w-4 h-4" />
                           </button>
                           <button onClick={() => setDeleteConfirm(inf)} title="حذف" className="p-1.5 rounded-lg text-red-500 hover:bg-red-50 transition">
@@ -244,7 +244,7 @@ function Influencers() {
                 </div>
               </div>
               <div className="flex gap-3 pt-2">
-                <button type="submit" disabled={saving} className="flex-1 py-2.5 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 transition disabled:opacity-60">
+                <button type="submit" disabled={saving} className="flex-1 py-2.5 bg-[#422c26] text-white font-bold rounded-xl hover:bg-[#35221e] transition disabled:opacity-60">
                   {saving ? 'جار الحفظ...' : (editTarget ? 'حفظ التعديلات' : 'إضافة الإنفلونسر')}
                 </button>
                 <button type="button" onClick={() => setShowModal(false)} className="px-4 py-2.5 bg-slate-100 text-slate-700 font-semibold rounded-xl hover:bg-slate-200 transition">
@@ -266,7 +266,7 @@ function Influencers() {
             </div>
             <p className="text-slate-500 text-sm mb-4">
               الكوميشن المعلق لـ <span className="font-bold text-slate-700">{payModal.name}</span>:
-              <span className="text-amber-600 font-bold mr-1">{fmt(payModal.pending)} جنيه</span>
+              <span className="text-[#684b3f] font-bold mr-1">{fmt(payModal.pending)} جنيه</span>
             </p>
             <div className="space-y-3">
               <div>
@@ -279,7 +279,7 @@ function Influencers() {
               </div>
             </div>
             <div className="flex gap-3 mt-4">
-              <button onClick={handlePay} className="flex-1 py-2.5 bg-green-600 text-white font-bold rounded-xl hover:bg-green-700 transition">
+              <button onClick={handlePay} className="flex-1 py-2.5 bg-[#422c26] text-white font-bold rounded-xl hover:bg-[#35221e] transition">
                 تأكيد الدفع
               </button>
               <button onClick={() => setPayModal(null)} className="px-4 py-2.5 bg-slate-100 text-slate-700 font-semibold rounded-xl hover:bg-slate-200 transition">
@@ -318,7 +318,7 @@ function Influencers() {
       <style>{`
         .label { display: block; font-size: 0.75rem; font-weight: 600; color: #475569; margin-bottom: 0.25rem; }
         .input { width: 100%; padding: 0.6rem 0.85rem; border-radius: 0.75rem; border: 1px solid #e2e8f0; outline: none; font-size: 0.875rem; color: #1e293b; transition: border 0.15s; }
-        .input:focus { border-color: #6366f1; box-shadow: 0 0 0 3px rgba(99,102,241,0.1); }
+        .input:focus { border-color: #717854; box-shadow: 0 0 0 3px rgba(113,120,84,0.14); }
       `}</style>
     </div>
   );

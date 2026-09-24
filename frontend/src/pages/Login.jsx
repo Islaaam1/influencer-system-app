@@ -32,20 +32,14 @@ function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 p-4">
-      {/* Background decoration */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-white/10 rounded-full blur-3xl" />
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-white/10 rounded-full blur-3xl" />
-      </div>
-
+    <div className="min-h-screen flex items-center justify-center bg-white p-4">
       <div className="relative w-full max-w-md">
         {/* Card */}
-        <div className="bg-white rounded-3xl shadow-2xl p-8">
+        <div className="bg-white rounded-3xl shadow-xl shadow-[#422c26]/10 border border-slate-100 p-8">
           {/* Header */}
           <div className="text-center mb-8">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl mb-4 shadow-lg">
-              <span className="text-2xl">🚀</span>
+            <div className="bg-[#717854] rounded-2xl mb-4">
+              <img src="/logo.png" alt="Luna Healthy" className="h-36 w-48 object-contain mx-auto" />
             </div>
             <h1 className="text-2xl font-bold text-slate-800">نظام الإنفلونسرز</h1>
             <p className="text-slate-500 text-sm mt-1">سجّل دخولك للمتابعة</p>
@@ -63,7 +57,7 @@ function Login() {
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
                 placeholder="البريد الإلكتروني أو اسم المستخدم"
-                className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 outline-none transition text-slate-800 text-sm"
+                className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#717854] focus:ring-2 focus:ring-[#ede4d7] outline-none transition text-slate-800 text-sm"
                 dir="auto"
               />
             </div>
@@ -79,7 +73,7 @@ function Login() {
                   value={form.password}
                   onChange={(e) => setForm({ ...form, password: e.target.value })}
                   placeholder="••••••••"
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 outline-none transition text-slate-800 text-sm"
+                  className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#717854] focus:ring-2 focus:ring-[#ede4d7] outline-none transition text-slate-800 text-sm"
                   dir="ltr"
                 />
                 <button
@@ -96,7 +90,7 @@ function Login() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 px-6 bg-gradient-to-l from-indigo-600 to-purple-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:opacity-90 transition-all disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              className="w-full py-3 px-6 bg-[#422c26] hover:bg-[#35221e] text-[#d1bea1] font-bold rounded-xl shadow-lg hover:shadow-xl transition-all disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
               {loading ? (
                 <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white" />
@@ -112,8 +106,8 @@ function Login() {
           {/* Hint */}
           <div className="mt-6 p-3 bg-slate-50 rounded-xl border border-slate-100">
             <p className="text-xs text-slate-400 text-center">
-              حساب الأدمين الافتراضي: <span className="text-indigo-600 font-mono" dir="ltr">admin@system.com</span>
-              <br />كلمة المرور: <span className="text-indigo-600 font-mono" dir="ltr">admin123</span>
+                {/* حساب الأدمين الافتراضي: <span className="text-[#422c26] font-mono" dir="ltr"></span>
+                <br />كلمة المرور: <span className="text-[#422c26] font-mono" dir="ltr"></span> */}
             </p>
           </div>
         </div>

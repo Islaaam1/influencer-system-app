@@ -3,6 +3,7 @@ const User = require('../models/user.schema');
 const Order = require('../models/order.schema');
 const Product = require('../models/product.schema');
 const CommissionPayment = require('../models/commissionPayment.schema');
+const { submitOrderToGoogleForm } = require('../services/googleForm.service');
 
 function orderResponse(order) {
   const result = order.toJSON();
@@ -290,6 +291,14 @@ async function createOrder(req, res, next) {
     } catch (error) {
       await restoreStock(orderProducts);
       throw error;
+    }
+
+    try {
+      await submitOrderToGoogleForm(order);
+      order.google_form_synced = true;
+      await Order.updateOne({ _id: order._id }, { $set: { google_form_synced: true } });
+    } catch (googleFormError) {
+      console.error('Failed to submit order to Google Form:', googleFormError.message);
     }
 
     await order.populate('influencer_id', 'name');

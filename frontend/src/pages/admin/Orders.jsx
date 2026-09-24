@@ -88,7 +88,7 @@ function Orders() {
         <div className="relative flex-1 min-w-48">
           <Search className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
           <input
-            className="w-full pr-9 pl-4 py-2 rounded-xl border border-slate-200 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 outline-none text-sm"
+            className="w-full pr-9 pl-4 py-2 rounded-xl border border-slate-200 focus:border-[#717854] focus:ring-2 focus:ring-[#ede4d7] outline-none text-sm"
             placeholder="بحث بالعميل أو البرومو كود..."
             value={search}
             onChange={e => setSearch(e.target.value)}
@@ -101,8 +101,8 @@ function Orders() {
               onClick={() => setStatusFilter(opt.value)}
               className={`px-3 py-2 rounded-xl text-xs font-semibold border transition ${
                 statusFilter === opt.value
-                  ? 'bg-indigo-600 text-white border-indigo-600'
-                  : 'bg-white text-slate-600 border-slate-200 hover:border-indigo-300'
+                  ? 'bg-[#422c26] text-white border-[#422c26]'
+                  : 'bg-white text-slate-600 border-slate-200 hover:border-[#d1bea1]'
               }`}
             >
               {opt.label}
@@ -115,7 +115,7 @@ function Orders() {
       <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
         {loading ? (
           <div className="flex items-center justify-center h-40">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600" />
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#422c26]" />
           </div>
         ) : filtered.length === 0 ? (
           <div className="text-center py-16 text-slate-400">
@@ -147,7 +147,7 @@ function Orders() {
                       {order.customer_phone && <p className="text-xs text-slate-400 font-mono">{order.customer_phone}</p>}
                       {order.governorate && <p className="text-xs text-slate-500 mt-1">{order.governorate} — {order.address}</p>}
                       {order.products?.length > 0 && (
-                        <p className="text-xs text-indigo-600 mt-1">
+                        <p className="text-xs text-[#717854] mt-1">
                           {order.products.map(product => `${product.name} × ${product.quantity}`).join('، ')}
                         </p>
                       )}
@@ -155,19 +155,19 @@ function Orders() {
                     <td className="px-4 py-3">
                       {order.promo_code ? (
                         <div>
-                          <span className="font-mono text-xs font-bold bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded">{order.promo_code}</span>
+                          <span className="font-mono text-xs font-bold bg-[#f7f3ed] text-[#422c26] px-2 py-0.5 rounded">{order.promo_code}</span>
                           {order.influencer_name && <p className="text-xs text-slate-400 mt-0.5">{order.influencer_name}</p>}
                         </div>
                       ) : <span className="text-slate-300 text-xs">—</span>}
                     </td>
-                    <td className="px-4 py-3 font-semibold text-green-700">{fmt(order.order_value)} ج</td>
+                    <td className="px-4 py-3 font-semibold text-[#5d6446]">{fmt(order.order_value)} ج</td>
                     <td className="px-4 py-3 text-red-500 font-medium">{order.discount_amount > 0 ? `-${fmt(order.discount_amount)} ج` : '—'}</td>
-                    <td className="px-4 py-3 text-amber-600 font-medium">{order.commission_amount > 0 ? `${fmt(order.commission_amount)} ج` : '—'}</td>
+                    <td className="px-4 py-3 text-[#684b3f] font-medium">{order.commission_amount > 0 ? `${fmt(order.commission_amount)} ج` : '—'}</td>
                     <td className="px-4 py-3">
                       <select
                         value={order.status}
                         onChange={e => handleStatusChange(order, e.target.value)}
-                        className="text-xs border border-slate-200 rounded-lg px-2 py-1 outline-none cursor-pointer bg-white hover:border-indigo-300 transition"
+                        className="text-xs border border-slate-200 rounded-lg px-2 py-1 outline-none cursor-pointer bg-white hover:border-[#d1bea1] transition"
                       >
                         <option value="pending">قيد الانتظار</option>
                         <option value="delivered">تم التوصيل</option>

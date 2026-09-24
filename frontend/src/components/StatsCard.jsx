@@ -1,10 +1,10 @@
 function StatsCard({ title, value, subtitle, icon: Icon, color = 'indigo', trend }) {
   const colors = {
-    indigo: { bg: 'bg-indigo-50', text: 'text-indigo-600', icon: 'bg-indigo-100' },
-    green:  { bg: 'bg-green-50',  text: 'text-green-600',  icon: 'bg-green-100' },
-    amber:  { bg: 'bg-amber-50',  text: 'text-amber-600',  icon: 'bg-amber-100' },
+    indigo: { bg: 'bg-[#f7f3ed]', text: 'text-[#422c26]', icon: 'bg-[#ede4d7]' },
+    green:  { bg: 'bg-[#f4f6f0]', text: 'text-[#5d6446]', icon: 'bg-[#e5e9da]' },
+    amber:  { bg: 'bg-[#faf7f1]', text: 'text-[#684b3f]', icon: 'bg-[#f2eadd]' },
     red:    { bg: 'bg-red-50',    text: 'text-red-600',    icon: 'bg-red-100' },
-    purple: { bg: 'bg-purple-50', text: 'text-purple-600', icon: 'bg-purple-100' },
+    purple: { bg: 'bg-[#f4f4ef]', text: 'text-[#717854]', icon: 'bg-[#e7e8dc]' },
   };
 
   const c = colors[color] || colors.indigo;

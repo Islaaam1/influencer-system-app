@@ -37,6 +37,7 @@ const orderSchema = new mongoose.Schema(
     },
     discount_amount: { type: Number, default: 0, min: 0 },
     commission_amount: { type: Number, default: 0, min: 0 },
+    google_form_synced: { type: Boolean, default: false },
     status: {
       type: String,
       enum: ['pending', 'delivered', 'cancelled'],

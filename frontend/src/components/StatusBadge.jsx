@@ -1,6 +1,6 @@
 const STATUS_CONFIG = {
-  pending:   { label: 'قيد الانتظار', classes: 'bg-amber-100 text-amber-700 border border-amber-200' },
-  delivered: { label: 'تم التوصيل',   classes: 'bg-green-100 text-green-700 border border-green-200' },
+  pending:   { label: 'قيد الانتظار', classes: 'bg-[#f2eadd] text-[#684b3f] border border-[#e3d4bd]' },
+  delivered: { label: 'تم التوصيل',   classes: 'bg-[#e5e9da] text-[#4a5039] border border-[#cdd5ba]' },
   cancelled: { label: 'ملغي',         classes: 'bg-red-100 text-red-700 border border-red-200' },
 };
 

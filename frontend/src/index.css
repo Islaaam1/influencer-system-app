@@ -8,8 +8,8 @@
 
 body {
   direction: rtl;
-  background-color: #f8fafc;
-  color: #1e293b;
+  background-color: #ffffff;
+  color: #422c26;
 }
 
 /* Scrollbar */
@@ -17,10 +17,10 @@ body {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: #ede4d7;
 }
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #717854;
   border-radius: 3px;
 }
 

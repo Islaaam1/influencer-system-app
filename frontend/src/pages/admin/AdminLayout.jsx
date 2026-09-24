@@ -5,7 +5,6 @@ import {
   LogOut,
   Package,
   PlusCircle,
-  Rocket,
   ShoppingBag,
   Users,
 } from 'lucide-react';
@@ -30,18 +29,10 @@ function AdminLayout() {
   };
 
   return (
-    <div className="flex min-h-screen bg-slate-50">
-      <aside className="w-64 flex-shrink-0 bg-gradient-to-b from-indigo-700 to-indigo-900 flex flex-col">
-        <div className="px-6 py-6 border-b border-indigo-600/50">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
-              <Rocket className="w-5 h-5 text-white" />
-            </div>
-            <div>
-              <p className="text-white font-bold text-sm leading-tight">نظام الإنفلونسرز</p>
-              <p className="text-indigo-300 text-xs">لوحة الأدمن</p>
-            </div>
-          </div>
+    <div className="flex min-h-screen bg-white">
+      <aside className="w-64 flex-shrink-0 bg-[#717854] text-[#d1bea1] flex flex-col shadow-xl shadow-[#422c26]/10">
+        <div className="px-4 py-3 border-b border-[#d1bea1]/30 flex justify-center">
+          <img src="/logo.png" alt="Luna Healthy" className="h-36 w-44 object-contain" />
         </div>
 
         <nav className="flex-1 px-4 py-4 space-y-1 overflow-y-auto">
@@ -52,8 +43,8 @@ function AdminLayout() {
               end={end}
               className={({ isActive }) => `flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all ${
                 isActive
-                  ? 'bg-white/20 text-white shadow-sm'
-                  : 'text-indigo-200 hover:bg-white/10 hover:text-white'
+                  ? 'bg-[#422c26] text-[#d1bea1] shadow-md'
+                  : 'text-[#d1bea1]/85 hover:bg-[#422c26]/30 hover:text-[#d1bea1]'
               }`}
             >
               <Icon className="w-5 h-5 flex-shrink-0" />
@@ -62,24 +53,24 @@ function AdminLayout() {
           ))}
         </nav>
 
-        <div className="px-4 py-4 border-t border-indigo-600/50">
+        <div className="px-4 py-4 border-t border-[#d1bea1]/30">
           <div className="flex items-center gap-3 mb-3 px-2">
-            <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">
+            <div className="w-8 h-8 rounded-full bg-[#422c26]/25 flex items-center justify-center text-[#d1bea1] font-bold text-xs flex-shrink-0">
               {user?.name?.charAt(0)}
             </div>
             <div className="min-w-0">
-              <p className="text-white text-xs font-semibold truncate">{user?.name}</p>
-              <p className="text-indigo-300 text-xs truncate">{user?.email}</p>
+              <p className="text-[#d1bea1] text-xs font-semibold truncate">{user?.name}</p>
+              <p className="text-[#d1bea1]/70 text-xs truncate">{user?.email}</p>
             </div>
           </div>
-          <button onClick={handleLogout} className="w-full flex items-center gap-2 px-4 py-2 rounded-xl text-red-300 hover:bg-red-500/20 hover:text-red-200 transition text-sm font-medium">
+          <button onClick={handleLogout} className="w-full flex items-center gap-2 px-4 py-2 rounded-xl text-[#d1bea1] hover:bg-[#422c26]/30 transition text-sm font-medium">
             <LogOut className="w-4 h-4" />
             تسجيل الخروج
           </button>
         </div>
       </aside>
 
-      <main className="flex-1 overflow-auto">
+      <main className="flex-1 overflow-auto bg-white">
         <Outlet />
       </main>
     </div>
