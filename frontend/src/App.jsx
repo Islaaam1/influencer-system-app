@@ -10,6 +10,7 @@ import AdminDashboard from './pages/admin/Dashboard';
 import Influencers from './pages/admin/Influencers';
 import Orders from './pages/admin/Orders';
 import AddOrder from './pages/admin/AddOrder';
+import Products from './pages/admin/Products';
 import InfluencerDashboard from './pages/influencer/Dashboard';
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
             <Route index element={<AdminDashboard />} />
             <Route path="influencers" element={<Influencers />} />
             <Route path="orders" element={<Orders />} />
+            <Route path="products" element={<Products />} />
             <Route path="add-order" element={<AddOrder />} />
           </Route>
 

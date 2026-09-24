@@ -39,6 +39,9 @@ function Orders() {
       const q = search.toLowerCase();
       result = result.filter(o =>
         o.customer_name?.toLowerCase().includes(q) ||
+        o.customer_phone?.toLowerCase().includes(q) ||
+        o.governorate?.toLowerCase().includes(q) ||
+        o.products?.some(product => product.name?.toLowerCase().includes(q) || product.code?.toLowerCase().includes(q)) ||
         o.promo_code?.toLowerCase().includes(q) ||
         o.influencer_name?.toLowerCase().includes(q)
       );
@@ -142,6 +145,12 @@ function Orders() {
                     <td className="px-4 py-3">
                       <p className="font-semibold text-slate-800">{order.customer_name}</p>
                       {order.customer_phone && <p className="text-xs text-slate-400 font-mono">{order.customer_phone}</p>}
+                      {order.governorate && <p className="text-xs text-slate-500 mt-1">{order.governorate} — {order.address}</p>}
+                      {order.products?.length > 0 && (
+                        <p className="text-xs text-indigo-600 mt-1">
+                          {order.products.map(product => `${product.name} × ${product.quantity}`).join('، ')}
+                        </p>
+                      )}
                     </td>
                     <td className="px-4 py-3">
                       {order.promo_code ? (
