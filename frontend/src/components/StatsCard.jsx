@@ -10,7 +10,7 @@ function StatsCard({ title, value, subtitle, icon: Icon, color = 'indigo', trend
   const c = colors[color] || colors.indigo;
 
   return (
-    <div className="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 flex items-center gap-4">
+    <div className="flex min-w-0 items-center gap-3 rounded-2xl border border-slate-100 bg-white p-4 shadow-sm sm:gap-4 sm:p-5">
       {Icon && (
         <div className={`${c.icon} p-3 rounded-xl flex-shrink-0`}>
           <Icon className={`w-6 h-6 ${c.text}`} />
@@ -18,7 +18,7 @@ function StatsCard({ title, value, subtitle, icon: Icon, color = 'indigo', trend
       )}
       <div className="flex-1 min-w-0">
         <p className="text-sm text-slate-500 font-medium truncate">{title}</p>
-        <p className={`text-2xl font-bold ${c.text} mt-0.5`}>{value}</p>
+        <p className={`break-words text-xl font-bold sm:text-2xl ${c.text} mt-0.5`}>{value}</p>
         {subtitle && <p className="text-xs text-slate-400 mt-0.5">{subtitle}</p>}
       </div>
     </div>

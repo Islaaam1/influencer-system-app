@@ -76,7 +76,7 @@ function Orders() {
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="space-y-6 p-4 sm:p-6">
       {/* Header */}
       <div>
         <h1 className="text-2xl font-bold text-slate-800">الأوردرات</h1>
@@ -84,8 +84,8 @@ function Orders() {
       </div>
 
       {/* Filters */}
-      <div className="flex flex-wrap gap-3">
-        <div className="relative flex-1 min-w-48">
+      <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+        <div className="relative min-w-0 flex-1 sm:min-w-48">
           <Search className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
           <input
             className="w-full pr-9 pl-4 py-2 rounded-xl border border-slate-200 focus:border-[#717854] focus:ring-2 focus:ring-[#ede4d7] outline-none text-sm"
@@ -94,12 +94,12 @@ function Orders() {
             onChange={e => setSearch(e.target.value)}
           />
         </div>
-        <div className="flex gap-2">
+        <div className="flex w-full gap-2 overflow-x-auto pb-1 sm:w-auto">
           {STATUS_OPTIONS.map(opt => (
             <button
               key={opt.value}
               onClick={() => setStatusFilter(opt.value)}
-              className={`px-3 py-2 rounded-xl text-xs font-semibold border transition ${
+              className={`flex-shrink-0 px-3 py-2 rounded-xl text-xs font-semibold border transition ${
                 statusFilter === opt.value
                   ? 'bg-[#422c26] text-white border-[#422c26]'
                   : 'bg-white text-slate-600 border-slate-200 hover:border-[#d1bea1]'
@@ -124,7 +124,7 @@ function Orders() {
           </div>
         ) : (
           <div className="overflow-x-auto">
-            <table className="w-full text-sm">
+            <table className="w-full min-w-[980px] text-sm">
               <thead className="bg-slate-50 border-b border-slate-100">
                 <tr>
                   <th className="px-4 py-3 text-right text-slate-500 font-semibold">#</th>
@@ -190,8 +190,8 @@ function Orders() {
 
       {/* Delete Confirm */}
       {deleteConfirm && (
-        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-sm p-6 text-center">
+        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/40 p-3 backdrop-blur-sm sm:p-4">
+          <div className="w-full max-w-sm rounded-2xl bg-white p-4 text-center shadow-2xl sm:p-6">
             <div className="w-14 h-14 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <Trash2 className="w-7 h-7 text-red-500" />
             </div>
@@ -199,7 +199,7 @@ function Orders() {
             <p className="text-slate-500 text-sm mb-6">
               أوردر رقم <span className="font-bold">#{deleteConfirm.id}</span> للعميل <span className="font-bold text-slate-700">{deleteConfirm.customer_name}</span>
             </p>
-            <div className="flex gap-3">
+            <div className="flex flex-col gap-3 sm:flex-row">
               <button onClick={() => handleDelete(deleteConfirm.id)} className="flex-1 py-2.5 bg-red-500 text-white font-bold rounded-xl hover:bg-red-600 transition">حذف</button>
               <button onClick={() => setDeleteConfirm(null)} className="flex-1 py-2.5 bg-slate-100 text-slate-700 font-semibold rounded-xl hover:bg-slate-200 transition">إلغاء</button>
             </div>

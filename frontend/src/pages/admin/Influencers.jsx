@@ -92,14 +92,14 @@ function Influencers() {
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="space-y-6 p-4 sm:p-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
         <div>
           <h1 className="text-2xl font-bold text-slate-800"> شركاء لونا</h1>
           <p className="text-slate-500 text-sm mt-0.5">{influencers.length} شريك  مسجل</p>
         </div>
-        <button onClick={openAdd} className="flex items-center gap-2 px-4 py-2 bg-[#422c26] text-white rounded-xl font-semibold text-sm hover:bg-[#35221e] transition shadow-sm">
+        <button onClick={openAdd} className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#422c26] px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#35221e] sm:w-auto">
           <UserPlus className="w-4 h-4" />
           إضافة شريك 
         </button>
@@ -119,7 +119,7 @@ function Influencers() {
           </div>
         ) : (
           <div className="overflow-x-auto">
-            <table className="w-full text-sm">
+            <table className="w-full min-w-[880px] text-sm">
               <thead className="bg-slate-50 border-b border-slate-100">
                 <tr>
                   <th className="px-4 py-3 text-right text-slate-500 font-semibold">شريك لونا</th>
@@ -202,9 +202,9 @@ function Influencers() {
 
       {/* ── Add/Edit Modal ── */}
       {showModal && (
-        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md">
-            <div className="flex items-center justify-between p-6 border-b border-slate-100">
+        <div className="fixed inset-0 z-[60] flex items-center justify-center overflow-y-auto bg-black/40 p-3 backdrop-blur-sm sm:p-4">
+          <div className="my-auto max-h-[calc(100dvh-1.5rem)] w-full max-w-md overflow-y-auto rounded-2xl bg-white shadow-2xl">
+            <div className="flex items-center justify-between border-b border-slate-100 p-4 sm:p-6">
               <h2 className="font-bold text-slate-800 text-lg">
                 {editTarget ? 'تعديل شريك لونا' : 'إضافة شريك لونا جديد'}
               </h2>
@@ -212,8 +212,8 @@ function Influencers() {
                 <X className="w-5 h-5" />
               </button>
             </div>
-            <form onSubmit={handleSave} className="p-6 space-y-4">
-              <div className="grid grid-cols-2 gap-4">
+            <form onSubmit={handleSave} className="space-y-4 p-4 sm:p-6">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div className="col-span-2">
                   <label className="label">الاسم *</label>
                   <input className="input" placeholder="أحمد محمد" value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} required />
@@ -243,7 +243,7 @@ function Influencers() {
                   <input className="input" type="number" min="0" max="100" value={form.commission_rate} onChange={e => setForm({ ...form, commission_rate: e.target.value })} />
                 </div>
               </div>
-              <div className="flex gap-3 pt-2">
+              <div className="flex flex-col gap-3 pt-2 sm:flex-row">
                 <button type="submit" disabled={saving} className="flex-1 py-2.5 bg-[#422c26] text-white font-bold rounded-xl hover:bg-[#35221e] transition disabled:opacity-60">
                   {saving ? 'جار الحفظ...' : (editTarget ? 'حفظ التعديلات' : 'إضافة شريك لونا')}
                 </button>
@@ -258,8 +258,8 @@ function Influencers() {
 
       {/* ── Pay Commission Modal ── */}
       {payModal && (
-        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-sm p-6">
+        <div className="fixed inset-0 z-[60] flex items-center justify-center overflow-y-auto bg-black/40 p-3 backdrop-blur-sm sm:p-4">
+          <div className="my-auto w-full max-w-sm rounded-2xl bg-white p-4 shadow-2xl sm:p-6">
             <div className="flex items-center justify-between mb-4">
               <h2 className="font-bold text-slate-800">تسجيل دفع كوميشن</h2>
               <button onClick={() => setPayModal(null)} className="text-slate-400 hover:text-slate-600"><X className="w-5 h-5" /></button>
@@ -278,7 +278,7 @@ function Influencers() {
                 <input className="input" value={payNotes} onChange={e => setPayNotes(e.target.value)} placeholder="تحويل بنكي..." />
               </div>
             </div>
-            <div className="flex gap-3 mt-4">
+            <div className="mt-4 flex flex-col gap-3 sm:flex-row">
               <button onClick={handlePay} className="flex-1 py-2.5 bg-[#422c26] text-white font-bold rounded-xl hover:bg-[#35221e] transition">
                 تأكيد الدفع
               </button>
@@ -292,8 +292,8 @@ function Influencers() {
 
       {/* ── Delete Confirm Modal ── */}
       {deleteConfirm && (
-        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-sm p-6 text-center">
+        <div className="fixed inset-0 z-[60] flex items-center justify-center overflow-y-auto bg-black/40 p-3 backdrop-blur-sm sm:p-4">
+          <div className="my-auto w-full max-w-sm rounded-2xl bg-white p-4 text-center shadow-2xl sm:p-6">
             <div className="w-14 h-14 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <Trash2 className="w-7 h-7 text-red-500" />
             </div>
@@ -302,7 +302,7 @@ function Influencers() {
               هل أنت متأكد من حذف <span className="font-bold text-slate-700">{deleteConfirm.name}</span>؟
               <br /><span className="text-red-500 text-xs">هذا الإجراء لا يمكن التراجع عنه</span>
             </p>
-            <div className="flex gap-3">
+            <div className="flex flex-col gap-3 sm:flex-row">
               <button onClick={() => handleDelete(deleteConfirm.id)} className="flex-1 py-2.5 bg-red-500 text-white font-bold rounded-xl hover:bg-red-600 transition">
                 نعم، احذف
               </button>

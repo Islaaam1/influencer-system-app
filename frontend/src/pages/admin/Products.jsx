@@ -90,13 +90,13 @@ function Products() {
   });
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="space-y-6 p-4 sm:p-6">
       <div>
         <h1 className="text-2xl font-bold text-slate-800">المنتجات</h1>
         <p className="text-sm text-slate-500 mt-1">إدارة المنتجات والأسعار والكميات المتاحة</p>
       </div>
 
-      <form onSubmit={handleSubmit} className="bg-white rounded-2xl border border-slate-100 shadow-sm p-5">
+      <form onSubmit={handleSubmit} className="rounded-2xl border border-slate-100 bg-white p-4 shadow-sm sm:p-5">
         <div className="flex items-center justify-between mb-4">
           <h2 className="font-bold text-slate-700">{editingId ? 'تعديل المنتج' : 'إضافة منتج جديد'}</h2>
           {editingId && <button type="button" onClick={resetForm} className="p-2 rounded-lg text-slate-400 hover:bg-slate-100"><X className="w-4 h-4" /></button>}
@@ -119,7 +119,7 @@ function Products() {
             <input className="product-input" type="number" min="0" step="1" value={form.quantity} onChange={(event) => setForm({ ...form, quantity: event.target.value })} required />
           </div>
         </div>
-        <button type="submit" disabled={saving} className="mt-4 px-5 py-2.5 bg-[#422c26] hover:bg-[#35221e] text-white rounded-xl font-semibold flex items-center gap-2 disabled:opacity-50">
+        <button type="submit" disabled={saving} className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-[#422c26] px-5 py-2.5 font-semibold text-white hover:bg-[#35221e] disabled:opacity-50 sm:w-auto">
           <Plus className="w-4 h-4" /> {saving ? 'جاري الحفظ...' : editingId ? 'حفظ التعديلات' : 'إضافة المنتج'}
         </button>
       </form>
@@ -142,7 +142,7 @@ function Products() {
           </div>
         ) : (
           <div className="overflow-x-auto">
-            <table className="w-full text-sm">
+            <table className="w-full min-w-[680px] text-sm">
               <thead className="bg-slate-50">
                 <tr>
                   <th className="px-5 py-3 text-right text-slate-500 font-semibold">المنتج</th>

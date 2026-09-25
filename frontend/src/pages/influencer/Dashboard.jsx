@@ -101,7 +101,7 @@ function InfluencerDashboard() {
     <div className="min-h-screen bg-white">
       {/* ── Header ── */}
       <header className="bg-[#717854] text-[#d1bea1]">
-        <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 sm:px-6 sm:py-4">
           <img src="/logo.png" alt="Luna Healthy" className="h-20 w-28 object-contain" />
           <div className="flex items-center gap-3">
             <div className="text-left hidden sm:block">
@@ -119,23 +119,23 @@ function InfluencerDashboard() {
         </div>
 
         {/* Welcome + Promo Code */}
-        <div className="max-w-5xl mx-auto px-6 pb-8 pt-2">
+        <div className="mx-auto max-w-5xl px-4 pb-6 pt-2 sm:px-6 sm:pb-8">
           <h1 className="text-2xl font-bold mb-1">أهلاً، {influencerName}! 👋</h1>
           <p className="text-[#d1bea1]/80 text-sm mb-6">إليك نظرة على أداء برومو كودك</p>
 
           {/* Promo Code Card */}
           {promoCode && (
-            <div className="bg-white/15 backdrop-blur-sm rounded-2xl p-4 flex items-center justify-between border border-white/20 max-w-md">
+            <div className="flex max-w-md flex-col items-stretch justify-between gap-3 rounded-2xl border border-white/20 bg-white/15 p-4 backdrop-blur-sm sm:flex-row sm:items-center">
               <div>
                 <p className="text-[#d1bea1]/80 text-xs font-medium mb-1">برومو كودك الخاص</p>
-                <p className="text-3xl font-black tracking-widest font-mono text-white">{promoCode}</p>
+                <p className="break-all font-mono text-2xl font-black tracking-widest text-white sm:text-3xl">{promoCode}</p>
                 <p className="text-[#d1bea1]/80 text-xs mt-1">
                   خصم {stats?.user?.discount_rate}% للعميل • كوميشن {stats?.user?.commission_rate}% ليك
                 </p>
               </div>
               <button
                 onClick={copyCode}
-                className="flex flex-col items-center gap-1 p-3 bg-white/20 hover:bg-white/30 rounded-xl transition"
+                className="flex items-center justify-center gap-2 rounded-xl bg-white/20 p-3 transition hover:bg-white/30 sm:flex-col sm:gap-1"
                 title="انسخ الكود"
               >
                 {copied ? <Check className="w-5 h-5 text-[#d1bea1]" /> : <Copy className="w-5 h-5 text-white" />}
@@ -147,9 +147,9 @@ function InfluencerDashboard() {
       </header>
 
       {/* ── Body ── */}
-      <div className="max-w-5xl mx-auto px-6 py-6 space-y-6">
+      <div className="mx-auto max-w-5xl space-y-6 px-4 py-5 sm:px-6 sm:py-6">
         {/* Stats */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <StatsCard
             title="إجمالي الأوردرات"
             value={stats?.totalOrders ?? 0}
@@ -221,7 +221,7 @@ function InfluencerDashboard() {
             </div>
           ) : (
             <div className="overflow-x-auto">
-              <table className="w-full text-sm">
+              <table className="w-full min-w-[680px] text-sm">
                 <thead className="bg-slate-50 border-b border-slate-100">
                   <tr>
                     <th className="px-4 py-3 text-right text-slate-500 font-semibold">#</th>

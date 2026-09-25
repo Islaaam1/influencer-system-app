@@ -28,16 +28,16 @@ function AdminDashboard() {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="space-y-6 p-4 sm:p-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
         <div>
           <h1 className="text-2xl font-bold text-slate-800">لوحة التحكم</h1>
           <p className="text-slate-500 text-sm mt-0.5">نظرة عامة على أداء  شركاء لونا</p>
         </div>
         <Link
           to="/admin/add-order"
-          className="flex items-center gap-2 px-4 py-2 bg-[#422c26] text-white rounded-xl font-semibold text-sm hover:bg-[#35221e] transition shadow-sm"
+          className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#422c26] px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#35221e] sm:w-auto"
         >
           <PlusCircle className="w-4 h-4" />
           أضف أوردر
@@ -77,7 +77,7 @@ function AdminDashboard() {
       {/* Top Influencer + Recent Orders */}
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
         {/* Top Influencer */}
-        <div className="bg-white rounded-2xl p-5 shadow-sm border border-slate-100">
+        <div className="rounded-2xl border border-slate-100 bg-white p-4 shadow-sm sm:p-5">
           <div className="flex items-center gap-2 mb-4">
             <Trophy className="w-5 h-5 text-[#717854]" />
             <h2 className="font-bold text-slate-800">أفضل شريك لونا</h2>
@@ -111,7 +111,7 @@ function AdminDashboard() {
         </div>
 
         {/* Recent Orders */}
-        <div className="xl:col-span-2 bg-white rounded-2xl p-5 shadow-sm border border-slate-100">
+        <div className="rounded-2xl border border-slate-100 bg-white p-4 shadow-sm sm:p-5 xl:col-span-2">
           <div className="flex items-center justify-between mb-4">
             <h2 className="font-bold text-slate-800">آخر الأوردرات</h2>
             <Link to="/admin/orders" className="text-[#422c26] text-sm font-semibold hover:underline">
@@ -120,7 +120,7 @@ function AdminDashboard() {
           </div>
           {stats?.recentOrders?.length > 0 ? (
             <div className="overflow-x-auto">
-              <table className="w-full text-sm">
+              <table className="w-full min-w-[620px] text-sm">
                 <thead>
                   <tr className="border-b border-slate-100">
                     <th className="pb-3 text-right text-slate-500 font-medium">العميل</th>

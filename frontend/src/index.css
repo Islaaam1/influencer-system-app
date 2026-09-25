@@ -10,6 +10,7 @@ body {
   direction: rtl;
   background-color: #ffffff;
   color: #422c26;
+  overflow-x: hidden;
 }
 
 /* Scrollbar */
