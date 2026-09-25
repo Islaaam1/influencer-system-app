@@ -1,120 +1,126 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { Eye, EyeOff, LockKeyhole, LogIn, UserRound } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import api from '../utils/api';
-import toast from 'react-hot-toast';
-import { LogIn, Eye, EyeOff } from 'lucide-react';
 
 function Login() {
   const [form, setForm] = useState({ email: '', password: '' });
-  const [showPass, setShowPass] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     if (!form.email || !form.password) {
       toast.error('يرجى تعبئة جميع الحقول');
       return;
     }
+
     setLoading(true);
     try {
       const { data } = await api.post('/auth/login', form);
       login(data.token, data.user);
-      toast.success(`أهلاً ${data.user.name}! 👋`);
+      toast.success(`أهلًا ${data.user.name}!`);
       navigate(data.user.role === 'admin' ? '/admin' : '/influencer', { replace: true });
-    } catch (err) {
-      toast.error(err.response?.data?.error || 'حدث خطأ في تسجيل الدخول');
+    } catch (error) {
+      toast.error(error.response?.data?.error || 'حدث خطأ في تسجيل الدخول');
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white p-4">
-      <div className="relative w-full max-w-md">
-        {/* Card */}
-        <div className="bg-white rounded-3xl shadow-xl shadow-[#422c26]/10 border border-slate-100 p-8">
-          {/* Header */}
-          <div className="text-center mb-8">
-            <div className="bg-[#717854] rounded-2xl mb-4">
-              <img src="/logo.png" alt="Luna Healthy" className="h-36 w-48 object-contain mx-auto" />
-            </div>
-            <h1 className="text-2xl font-bold text-slate-800">
-              شركاء لونا
-               </h1>
-            <p className="text-slate-500 text-sm mt-1">سجّل دخولك للمتابعة</p>
+    <main className="relative min-h-screen overflow-hidden bg-[#717854] px-4 py-10 flex items-center justify-center">
+      <div className="absolute -top-28 -right-28 h-72 w-72 rounded-full bg-[#d1bea1]/10 blur-2xl" />
+      <div className="absolute -bottom-32 -left-24 h-80 w-80 rounded-full bg-[#422c26]/20 blur-3xl" />
+   
+
+      <section className="border-0 relative w-full max-w-md overflow-hidden rounded-[2rem]  border-[#d1bea1]/35 bg-white shadow-2xl shadow-[#422c26]/25">
+        <div className="bg-[#35221E] px-8 pt-5 pb-4 text-center border-b border-[#d1bea1]/25">
+          <img
+            src="/logo.png"
+            alt="Luna Healthy"
+            className="mx-auto h-40 w-52 object-contain drop-shadow-sm"
+          />
+        </div>
+
+        <div className="px-6 py-7 sm:px-9 sm:py-8">
+          <div className="mb-7 text-center">
+            <p className="mb-2 text-xs font-bold tracking-[0.24em] text-[#717854]">LUNA HEALTHY</p>
+            <h1 className="text-2xl font-extrabold text-[#422c26]">تسجيل الدخول </h1>
+            <p className="mt-2 text-sm text-slate-500">أدخل بيانات حسابك للوصول إلى لوحة التحكم</p>
           </div>
 
-          {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-5">
-            {/* Email */}
             <div>
-              <label className="block text-sm font-semibold text-slate-700 mb-1.5">
-                البريد الإلكتروني أو اسم المستخدم
+              <label htmlFor="login-identifier" className="mb-2 block text-sm font-bold text-[#422c26]">
+                البريد الإلكتروني 
               </label>
-              <input
-                type="text"
-                value={form.email}
-                onChange={(e) => setForm({ ...form, email: e.target.value })}
-                placeholder="البريد الإلكتروني أو اسم المستخدم"
-                className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#717854] focus:ring-2 focus:ring-[#ede4d7] outline-none transition text-slate-800 text-sm"
-                dir="auto"
-              />
+              <div className="relative">
+                <UserRound className="absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2 text-[#717854]" />
+                <input
+                  id="login-identifier"
+                  type="text"
+                  autoComplete="username"
+                  value={form.email}
+                  onChange={(event) => setForm({ ...form, email: event.target.value })}
+                  placeholder="E-mail"
+                  className="w-full rounded-xl border border-[#e1d8cc] bg-white py-3 pr-12 pl-4 text-sm text-[#422c26] outline-none transition placeholder:text-slate-400 focus:border-[#717854] focus:ring-4 focus:ring-[#717854]/10"
+                  dir="auto"
+                />
+              </div>
             </div>
 
-            {/* Password */}
             <div>
-              <label className="block text-sm font-semibold text-slate-700 mb-1.5">
+              <label htmlFor="login-password" className="mb-2 block text-sm font-bold text-[#422c26]">
                 كلمة المرور
               </label>
               <div className="relative">
+                <LockKeyhole className="absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2 text-[#717854]" />
                 <input
-                  type={showPass ? 'text' : 'password'}
+                  id="login-password"
+                  type={showPassword ? 'text' : 'password'}
+                  autoComplete="current-password"
                   value={form.password}
-                  onChange={(e) => setForm({ ...form, password: e.target.value })}
-                  placeholder="••••••••"
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#717854] focus:ring-2 focus:ring-[#ede4d7] outline-none transition text-slate-800 text-sm"
+                  onChange={(event) => setForm({ ...form, password: event.target.value })}
+                  placeholder="••••••••••••"
+                  className="w-full rounded-xl border border-[#e1d8cc] bg-white py-3 pr-12 pl-12 text-sm text-[#422c26] outline-none transition placeholder:text-slate-400 focus:border-[#717854] focus:ring-4 focus:ring-[#717854]/10"
                   dir="ltr"
                 />
                 <button
                   type="button"
-                  onClick={() => setShowPass(!showPass)}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition"
+                  onClick={() => setShowPassword((current) => !current)}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 transition hover:text-[#422c26]"
+                  aria-label={showPassword ? 'إخفاء كلمة المرور' : 'إظهار كلمة المرور'}
                 >
-                  {showPass ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
                 </button>
               </div>
             </div>
 
-            {/* Submit */}
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 px-6 bg-[#422c26] hover:bg-[#35221e] text-[#d1bea1] font-bold rounded-xl shadow-lg hover:shadow-xl transition-all disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#422c26] px-6 py-3.5 font-bold text-[#d1bea1] shadow-lg shadow-[#422c26]/20 transition hover:bg-[#35221e] hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-60"
             >
               {loading ? (
-                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white" />
+                <span className="h-5 w-5 animate-spin rounded-full border-2 border-[#d1bea1]/40 border-b-[#d1bea1]" />
               ) : (
                 <>
-                  <LogIn className="w-5 h-5" />
+                  <LogIn className="h-5 w-5" />
                   تسجيل الدخول
                 </>
               )}
             </button>
           </form>
 
-          {/* Hint */}
-          <div className="mt-6 p-3 bg-slate-50 rounded-xl border border-slate-100">
-            <p className="text-xs text-slate-400 text-center">
-                {/* حساب الأدمين الافتراضي: <span className="text-[#422c26] font-mono" dir="ltr"></span>
-                <br />كلمة المرور: <span className="text-[#422c26] font-mono" dir="ltr"></span> */}
-            </p>
-          </div>
+          
         </div>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 }
 
