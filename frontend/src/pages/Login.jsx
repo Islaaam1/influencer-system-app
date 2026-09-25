@@ -41,7 +41,9 @@ function Login() {
             <div className="bg-[#717854] rounded-2xl mb-4">
               <img src="/logo.png" alt="Luna Healthy" className="h-36 w-48 object-contain mx-auto" />
             </div>
-            <h1 className="text-2xl font-bold text-slate-800">نظام الإنفلونسرز</h1>
+            <h1 className="text-2xl font-bold text-slate-800">
+              شركاء لونا
+               </h1>
             <p className="text-slate-500 text-sm mt-1">سجّل دخولك للمتابعة</p>
           </div>
 

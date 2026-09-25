@@ -23,7 +23,7 @@ function Influencers() {
     setLoading(true);
     api.get('/influencers')
       .then(({ data }) => setInfluencers(data))
-      .catch(() => toast.error('تعذر تحميل الإنفلونسرز'))
+      .catch(() => toast.error('تعذر تحميل  شركاء لونا'))
       .finally(() => setLoading(false));
   };
 
@@ -96,12 +96,12 @@ function Influencers() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-slate-800">الإنفلونسرز</h1>
-          <p className="text-slate-500 text-sm mt-0.5">{influencers.length} إنفلونسر مسجل</p>
+          <h1 className="text-2xl font-bold text-slate-800"> شركاء لونا</h1>
+          <p className="text-slate-500 text-sm mt-0.5">{influencers.length} شريك  مسجل</p>
         </div>
         <button onClick={openAdd} className="flex items-center gap-2 px-4 py-2 bg-[#422c26] text-white rounded-xl font-semibold text-sm hover:bg-[#35221e] transition shadow-sm">
           <UserPlus className="w-4 h-4" />
-          إضافة إنفلونسر
+          إضافة شريك 
         </button>
       </div>
 

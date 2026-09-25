@@ -12,7 +12,7 @@ import { useAuth } from '../../context/AuthContext';
 
 const navItems = [
   { to: '/admin', label: 'لوحة التحكم', icon: LayoutDashboard, end: true },
-  { to: '/admin/influencers', label: 'الإنفلونسرز', icon: Users },
+  { to: '/admin/influencers', label: 'شركاء لونا', icon: Users },
   { to: '/admin/products', label: 'المنتجات', icon: Package },
   { to: '/admin/orders', label: 'الأوردرات', icon: ShoppingBag },
   { to: '/admin/add-order', label: 'أضف أوردر', icon: PlusCircle },
