@@ -271,7 +271,7 @@ function AddOrder() {
             <div className="flex justify-between text-sm"><span>إجمالي المنتجات</span><strong>{formatMoney(orderValue)} جنيه</strong></div>
             {discountAmount > 0 && <div className="flex justify-between text-sm text-red-500"><span>الخصم ({discountRate}%)</span><strong>- {formatMoney(discountAmount)} جنيه</strong></div>}
             <div className="border-t border-[#d1bea1] pt-2 flex justify-between"><strong>الإجمالي بعد الخصم</strong><strong className="text-[#5d6446] text-lg">{formatMoney(finalValue)} جنيه</strong></div>
-            {commissionAmount > 0 && <div className="flex justify-between text-sm text-[#684b3f] bg-[#faf7f1] rounded-xl px-3 py-2"><span>عمولة الإنفلونسر ({commissionRate}%)</span><strong>{formatMoney(commissionAmount)} جنيه</strong></div>}
+            {commissionAmount > 0 && <div className="flex justify-between text-sm text-[#684b3f] bg-[#faf7f1] rounded-xl px-3 py-2"><span>عمولة شريك لونا ({commissionRate}%)</span><strong>{formatMoney(commissionAmount)} جنيه</strong></div>}
           </section>
         )}
 

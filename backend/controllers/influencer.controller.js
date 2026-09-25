@@ -144,11 +144,11 @@ async function updateInfluencer(req, res, next) {
   try {
     const { id } = req.params;
     if (!mongoose.isObjectIdOrHexString(id)) {
-      return res.status(404).json({ error: 'الإنفلونسر غير موجود' });
+      return res.status(404).json({ error: 'شريك لونا غير موجود' });
     }
 
     const influencer = await User.findOne({ _id: id, role: 'influencer' });
-    if (!influencer) return res.status(404).json({ error: 'الإنفلونسر غير موجود' });
+    if (!influencer) return res.status(404).json({ error: 'شريك لونا غير موجود' });
 
     const { name, email, phone, password, discount_rate, commission_rate, promo_code, is_active } = req.body;
     const updates = {};
@@ -180,11 +180,11 @@ async function deleteInfluencer(req, res, next) {
   try {
     const { id } = req.params;
     if (!mongoose.isObjectIdOrHexString(id)) {
-      return res.status(404).json({ error: 'الإنفلونسر غير موجود' });
+      return res.status(404).json({ error: 'شريك لونا غير موجود' });
     }
 
     const influencer = await User.findOne({ _id: id, role: 'influencer' });
-    if (!influencer) return res.status(404).json({ error: 'الإنفلونسر غير موجود' });
+    if (!influencer) return res.status(404).json({ error: 'شريك لونا غير موجود' });
 
     await Promise.all([
       Order.updateMany({ influencer_id: id }, { $set: { influencer_id: null } }),
@@ -192,7 +192,7 @@ async function deleteInfluencer(req, res, next) {
     ]);
     await influencer.deleteOne();
 
-    return res.json({ message: 'تم حذف الإنفلونسر بنجاح' });
+    return res.json({ message: 'تم حذف شريك لونا بنجاح' });
   } catch (error) {
     return next(error);
   }
@@ -203,11 +203,11 @@ async function payCommission(req, res, next) {
     const { id } = req.params;
     const { amount, notes } = req.body;
     if (!mongoose.isObjectIdOrHexString(id)) {
-      return res.status(404).json({ error: 'الإنفلونسر غير موجود' });
+      return res.status(404).json({ error: 'شريك لونا غير موجود' });
     }
 
     const influencer = await User.findOne({ _id: id, role: 'influencer' }).select('name');
-    if (!influencer) return res.status(404).json({ error: 'الإنفلونسر غير موجود' });
+    if (!influencer) return res.status(404).json({ error: 'شريك لونا غير موجود' });
 
     if (!amount || Number(amount) <= 0) {
       return res.status(400).json({ error: 'يرجى إدخال مبلغ صحيح' });

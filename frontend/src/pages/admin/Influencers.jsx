@@ -47,7 +47,7 @@ function Influencers() {
         toast.success('تم التحديث بنجاح ✅');
       } else {
         await api.post('/influencers', form);
-        toast.success('تم إضافة الإنفلونسر بنجاح 🎉');
+        toast.success('تم إضافة شريك لونا بنجاح 🎉');
       }
       setShowModal(false);
       fetchInfluencers();
@@ -114,15 +114,15 @@ function Influencers() {
         ) : influencers.length === 0 ? (
           <div className="text-center py-16 text-slate-400">
             <UserPlus className="w-12 h-12 mx-auto mb-2 opacity-30" />
-            <p>لا يوجد إنفلونسرز بعد</p>
-            <button onClick={openAdd} className="text-[#422c26] font-semibold text-sm mt-1 hover:underline">أضف أول إنفلونسر</button>
+            <p>لا يوجد شريك لوناز بعد</p>
+            <button onClick={openAdd} className="text-[#422c26] font-semibold text-sm mt-1 hover:underline">أضف أول شريك لونا</button>
           </div>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead className="bg-slate-50 border-b border-slate-100">
                 <tr>
-                  <th className="px-4 py-3 text-right text-slate-500 font-semibold">الإنفلونسر</th>
+                  <th className="px-4 py-3 text-right text-slate-500 font-semibold">شريك لونا</th>
                   <th className="px-4 py-3 text-right text-slate-500 font-semibold">البرومو كود</th>
                   <th className="px-4 py-3 text-right text-slate-500 font-semibold">الأوردرات</th>
                   <th className="px-4 py-3 text-right text-slate-500 font-semibold">المبيعات</th>
@@ -206,7 +206,7 @@ function Influencers() {
           <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md">
             <div className="flex items-center justify-between p-6 border-b border-slate-100">
               <h2 className="font-bold text-slate-800 text-lg">
-                {editTarget ? 'تعديل إنفلونسر' : 'إضافة إنفلونسر جديد'}
+                {editTarget ? 'تعديل شريك لونا' : 'إضافة شريك لونا جديد'}
               </h2>
               <button onClick={() => setShowModal(false)} className="text-slate-400 hover:text-slate-600 transition">
                 <X className="w-5 h-5" />
@@ -245,7 +245,7 @@ function Influencers() {
               </div>
               <div className="flex gap-3 pt-2">
                 <button type="submit" disabled={saving} className="flex-1 py-2.5 bg-[#422c26] text-white font-bold rounded-xl hover:bg-[#35221e] transition disabled:opacity-60">
-                  {saving ? 'جار الحفظ...' : (editTarget ? 'حفظ التعديلات' : 'إضافة الإنفلونسر')}
+                  {saving ? 'جار الحفظ...' : (editTarget ? 'حفظ التعديلات' : 'إضافة شريك لونا')}
                 </button>
                 <button type="button" onClick={() => setShowModal(false)} className="px-4 py-2.5 bg-slate-100 text-slate-700 font-semibold rounded-xl hover:bg-slate-200 transition">
                   إلغاء

@@ -80,7 +80,7 @@ function AdminDashboard() {
         <div className="bg-white rounded-2xl p-5 shadow-sm border border-slate-100">
           <div className="flex items-center gap-2 mb-4">
             <Trophy className="w-5 h-5 text-[#717854]" />
-            <h2 className="font-bold text-slate-800">أفضل إنفلونسر</h2>
+            <h2 className="font-bold text-slate-800">أفضل شريك لونا</h2>
           </div>
           {stats?.topInfluencer ? (
             <div className="text-center py-4">
@@ -124,7 +124,7 @@ function AdminDashboard() {
                 <thead>
                   <tr className="border-b border-slate-100">
                     <th className="pb-3 text-right text-slate-500 font-medium">العميل</th>
-                    <th className="pb-3 text-right text-slate-500 font-medium">الإنفلونسر</th>
+                    <th className="pb-3 text-right text-slate-500 font-medium">شريك لونا</th>
                     <th className="pb-3 text-right text-slate-500 font-medium">القيمة</th>
                     <th className="pb-3 text-right text-slate-500 font-medium">الحالة</th>
                   </tr>

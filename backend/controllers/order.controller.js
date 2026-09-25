@@ -168,7 +168,7 @@ async function getInfluencerStats(req, res, next) {
       sumField(CommissionPayment, { influencer_id: influencerId }, 'amount'),
     ]);
 
-    if (!user) return res.status(404).json({ error: 'الإنفلونسر غير موجود' });
+    if (!user) return res.status(404).json({ error: 'شريك لونا غير موجود' });
 
     return res.json({
       user: {
